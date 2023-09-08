@@ -2,9 +2,10 @@ import requests
 import json
 import urllib.parse
 
-# 设置请求URL
+# URL
 add_kqjl_url = "https://hrsspub.sz.gov.cn/jgxxfw/jgfw/ydfw/student/addKqjl"
 get_kqdd_url = "https://hrsspub.sz.gov.cn/jgxxfw/jgfw/ydfw/student/getKqdd"
+get_verity_code_url = "https://hrsspub.sz.gov.cn/jgxxfw/jgfw/get/getVerifyCode?1694162488328"
 
 # 设置请求头，包括Cookie等
 headers = {
@@ -46,32 +47,37 @@ def get_kqdd(session):
 
 
 def add_kqjl(sid):
-    # 创建一个会话对象，该对象将自动处理 Cookies
     session = requests.Session()
+    verity_code_sesson = session.get(get_verity_code_url)
+
+    # 创建一个会话对象，该对象将自动处理 Cookies
+    print(session.cookies)
 
     # 设置初始 Cookies
     initial_cookies = {
-        'JSESSIONID': 'FChybYYMhka28IdhgIGRi4Nn_wcaOuv5B6nn4ZeD7kqU9cwOMG5l!2109771826',
-        'custom.session': 'e21f4b60-e7d7-4371-a8b9-32aaf8ac4ac7',
+        # 'JSESSIONID': 'FChybYYMhka28IdhgIGRi4Nn_wcaOuv5B6nn4ZeD7kqU9cwOMG5l!2109771826',
+        # 'custom.session': 'e21f4b60-e7d7-4371-a8b9-32aaf8ac4ac7',
+        'custom.session': 'e1218b44-ab6e-43e6-ac4f-c576952f55ff',
         '_sid': sid
     }
 
-    # 将初始 Cookies 添加到会话中
+    # # 将初始 Cookies 添加到会话中
     session.cookies.update(initial_cookies)
+    print(session.cookies)
+    # session.cookies.update(verity_code_sesson)
 
     url = get_kqdd(session)
     print("url = " + url)
 
-    # 打卡
-    response = session.get(url, headers=headers)
+    # # 打卡
+    # response = session.get(url, headers=headers)
 
-    # 打印打卡响应内容
-    print(response.text)
+    # # 打印打卡响应内容
+    # print(response.text)
 
 
 def main():
-    # input your sid
-    add_kqjl("xxxxx")
+    add_kqjl("41855")
 
 
 main()
