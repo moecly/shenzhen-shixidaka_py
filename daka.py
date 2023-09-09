@@ -2,7 +2,6 @@ import requests
 import json
 import urllib.parse
 import ddddocr
-import threading
 import base64
 
 class daka:
@@ -102,7 +101,7 @@ class daka:
     get_hash_url = 'https://hrsspub.sz.gov.cn/jgxxfw/jgfw/ggww/hash?loginInfo%5Bhash%5D=lkjh12'
     login_url = 'https://hrsspub.sz.gov.cn/jgxxfw/jgfw/suumLogin'
 
-    # 设置请求头，包括Cookie等
+    # 设置请求头
     headers = {
         "Accept": "*/*",
         "Accept-Encoding": "gzip, deflate, br",
