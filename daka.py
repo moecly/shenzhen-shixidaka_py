@@ -96,7 +96,7 @@ class daka:
     # URL
     add_kqjl_url = 'https://hrsspub.sz.gov.cn/jgxxfw/jgfw/ydfw/student/addKqjl'
     get_kqdd_url = 'https://hrsspub.sz.gov.cn/jgxxfw/jgfw/ydfw/student/getKqdd'
-    get_verity_code_url = 'https://hrsspub.sz.gov.cn/jgxxfw/jgfw/get/getVerifyCode?1694162488328'
+    get_verity_code_url = 'https://hrsspub.sz.gov.cn/jgxxfw/jgfw/get/getVerifyCode'
     get_hash_url = 'https://hrsspub.sz.gov.cn/jgxxfw/jgfw/ggww/hash?loginInfo%5Bhash%5D=lkjh12'
     login_url = 'https://hrsspub.sz.gov.cn/jgxxfw/jgfw/suumLogin'
 
