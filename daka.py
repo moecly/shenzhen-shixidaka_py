@@ -34,21 +34,23 @@ class daka:
             '_sid': sid
         }
 
-        # # 将初始 Cookies 添加到会话中
+        # 将初始 Cookies 添加到会话中
         self.session.cookies.update(initial_cookies)
-        print(self.session.cookies)
-
         url = self.get_kqdd()
 
         # 打卡
         response = self.session.get(url, headers=self.headers)
 
         # 打印打卡响应内容
+        print('-------------------------------------------')
+        print('sid: ' + sid)
         resp_json = json.loads(response.text)
         if resp_json['status'] == 200:
-            print('sid: ' + sid + ' 打卡成功')
+            print(' 打卡成功')
         else:
             print(resp_json['message'])
+
+        print('-------------------------------------------')
     
     def login(self, username, password):
         self.session.headers.update(self.headers)
@@ -83,10 +85,16 @@ class daka:
 
         response = self.session.post(url=self.login_url, params=params)
         resp_json = json.loads(response.text)
+        print('-------------------------------------------')
         if resp_json['result']['status'] != 3:
+            print('login err')
+            print('err msg: ')
+            print(resp_json)
+            print('-------------------------------------------')
             return False
 
-        print('登入成功')
+        print('login success')
+        print('-------------------------------------------')
         return True
 
     # URL
@@ -114,6 +122,12 @@ class daka:
         "X-Requested-With": "XMLHttpRequest"
     }
 
-daka = daka()
-daka.login('', '')
-daka.add_kqjl('')
+def main():
+    dk = daka()
+    while True:
+        ret = dk.login('', '')
+        if ret == True:
+            break
+    dk.add_kqjl('')
+
+main()
