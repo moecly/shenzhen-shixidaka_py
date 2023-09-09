@@ -29,8 +29,6 @@ class daka:
     def add_kqjl(self, sid):
         # 设置初始 Cookies
         initial_cookies = {
-            # 'JSESSIONID': 'FChybYYMhka28IdhgIGRi4Nn_wcaOuv5B6nn4ZeD7kqU9cwOMG5l!2109771826',
-            # 'custom.session': 'e21f4b60-e7d7-4371-a8b9-32aaf8ac4ac7',
             '_sid': sid
         }
 
