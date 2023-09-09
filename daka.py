@@ -57,7 +57,6 @@ class daka:
         verity_code = ocr.classification(response.content)
         print('-------------------------------------------')
         print("verity code: " + verity_code)
-        print('-------------------------------------------')
 
         response = self.session.get(self.get_hash_url)
         hash = json.loads(response.text)['result']['hash']
@@ -83,7 +82,6 @@ class daka:
 
         response = self.session.post(url=self.login_url, params=params)
         resp_json = json.loads(response.text)
-        print('-------------------------------------------')
         if resp_json['result']['status'] != 3:
             print('login err')
             print('err msg: ')
