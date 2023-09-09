@@ -15,7 +15,6 @@ class daka:
         initial_cookies = {
             '_sid': sid
         }
-        # print("sid: " + sid)
 
         # 将初始 Cookies 添加到会话中
         self.session.cookies.update(initial_cookies)
