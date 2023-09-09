@@ -2,18 +2,28 @@ import requests
 import json
 import urllib.parse
 import ddddocr
+import threading
 import base64
 
 class daka:
     def __init__(self):
         self.session = requests.Session()
 
-    def get_kqdd(self):
+    def get_kqdd(self, sid):
         params = {}
+        # 设置初始 Cookies
+        initial_cookies = {
+            '_sid': sid
+        }
+        # print("sid: " + sid)
+
+        # 将初始 Cookies 添加到会话中
+        self.session.cookies.update(initial_cookies)
         response = self.session.get(self.get_kqdd_url)
 
-        # 打印响应内容
+        # 设置kqdd
         json_data = json.loads(response.text).get('result')
+        
         params['cnz022'] = json_data.get('sxid')
         params['cnz058'] = json_data.get('xssxglid')
         params['cnz640'] = json_data.get('data')[0]['lat']
@@ -27,14 +37,7 @@ class daka:
 
 
     def add_kqjl(self, sid):
-        # 设置初始 Cookies
-        initial_cookies = {
-            '_sid': sid
-        }
-
-        # 将初始 Cookies 添加到会话中
-        self.session.cookies.update(initial_cookies)
-        url = self.get_kqdd()
+        url = self.get_kqdd(sid)
 
         # 打卡
         response = self.session.get(url, headers=self.headers)
